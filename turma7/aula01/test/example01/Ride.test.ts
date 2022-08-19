@@ -1,6 +1,6 @@
-import { feeCalculatorChain } from "../src/FeeCalculator";
-import Ride from "../src/Ride";
-import Segment from "../src/Segment";
+import { feeCalculatorChain } from "../../src/example01/FeeCalculator";
+import Ride from "../../src/example01/Ride";
+import Segment from "../../src/example01/Segment";
 
 describe('Ride suite test', () => {
     test('should calculate overnight fee for weekdays and Saturday', () => {

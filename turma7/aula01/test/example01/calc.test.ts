@@ -1,4 +1,4 @@
-import { calculateRide } from "../src/calc";
+import { calculateRide } from "../../src/example01/calc";
 
 describe('Calculate Ride Fee', () => {
     test('should calculate overnight fee for weekdays and Saturday', () => {

@@ -1,4 +1,4 @@
-import Segment from "../src/Segment";
+import Segment from "../../src/example01/Segment";
 
 describe('Segment test suite', () => {
     test('should throw "Invalid distance" if distance is not greather than zero', () => {
