@@ -18,43 +18,33 @@ export default class Cpf {
     private static validate(input: string): string | undefined {
         const cpf = input.replace(/[^\d]+/g, '');
 
-        if (cpf.length !== Cpf.LENGTH) {
+        if (cpf.length !== Cpf.LENGTH || this.hasAllDigitsEqual(cpf)) {
             return undefined;
         }
 
-        if (this.isSameDigit(cpf)) {
-            return undefined;
-        }
+        const firstDigit = this.calculateDigit(cpf, 10);
+        const secondDigit = this.calculateDigit(cpf.slice(0, 9) + firstDigit, 11);
+        const calculatedDigits = `${firstDigit}${secondDigit}`;
 
-        const firstDigit = Cpf.calculateDigit(cpf.slice(0, 9));
-        const secondDigit = Cpf.calculateDigit(cpf.slice(0, 9) + `${firstDigit}`);
-
-        if (cpf.slice(-2) === `${firstDigit}${secondDigit}`) {
+        if (calculatedDigits === cpf.slice(9)) {
             return cpf;
         }
         return undefined;
     }
 
-    private static isSameDigit(input: string) {
-        for (let num = 0; num <= 9; num++) {
-            const sameDigitCpf = Array(12).join(num.toString());
-            if (input === sameDigitCpf) {
-                return true;
-            }
-        }
-        return false;
+    private static hasAllDigitsEqual(cpf: string) {
+        const [firstDigit] = cpf;
+        return cpf.split('').every(digit => digit === firstDigit);
     }
 
-    private static calculateDigit(input: string) {
-        let factorSum = 0;
-        for (let i = 0; i < input.length; i++) {
-            const index = (input.length - 1) - i;
-            const digit = parseInt(input[index]);
-            factorSum += digit * (i + 2);
+    private static calculateDigit(cpf: string, factor: 10 | 11) {
+        let sum = 0;
+        for (let num of cpf) {
+            if (factor < 2) break;
+            sum += parseInt(num) * factor--;
         }
-
-        const rest = factorSum % Cpf.LENGTH;
-        const verificationDigit = (rest >= 2) ? Cpf.LENGTH - rest : 0;
-        return verificationDigit;
+        const rest = sum % Cpf.LENGTH;
+        const digit = (rest >= 2) ? Cpf.LENGTH - rest : 0;
+        return digit;
     }
 }

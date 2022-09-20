@@ -4,8 +4,8 @@ export default class OrderItem {
             throw new Error('Invalid item id');
         }
 
-        if (quantity <= 0) {
-            throw new Error('Invalid quantity');
+        if (price < 0.01) {
+            throw new Error('Invalid price');
         }
 
         if (quantity < 1) {
