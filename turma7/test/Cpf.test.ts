@@ -1,4 +1,4 @@
-import Cpf from "../../src/example02/Cpf";
+import Cpf from "../src/Cpf";
 
 test('Should validate a valid CPF', () => {
     const cpf = new Cpf('606.530.329-19');

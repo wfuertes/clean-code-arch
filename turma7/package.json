@@ -1,15 +1,15 @@
 {
-  "name": "aula01",
+  "name": "turma7",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@types/jest": "^28.1.7",
     "jest": "^28.1.3",
     "ts-jest": "^28.0.8",
