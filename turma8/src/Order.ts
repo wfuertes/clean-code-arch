@@ -1,14 +1,13 @@
 import Cpf from "./Cpf";
 import Coupon from "./Coupon";
 import OrderItem from "./OrderItem";
+import NumberUtils from "./NumberUtils";
 
 export default class Order {
-    readonly cpf: Cpf;
     readonly items: OrderItem[];
     private coupon?: Coupon;
 
-    constructor(cpf: Cpf) {
-        this.cpf = cpf;
+    constructor(readonly cpf: Cpf, readonly issueDate: Date) {
         this.items = [];
     }
 
@@ -26,8 +25,13 @@ export default class Order {
     total() {
         const total = this.items.reduce((total, orderItem) => total + orderItem.total(), 0);
         if (this.coupon) {
-            return Math.round((total - this.coupon.discount(total)) * 100) / 100;
+            return Math.round((total - this.coupon.discount(total, this.issueDate)) * 100) / 100;
         }
-        return Math.round(total * 100) / 100;
+        return NumberUtils.round(total, 2);
+    }
+
+    shippingCost(distance: number) {
+        const cost = this.items.reduce((total, orderItem) => total + orderItem.shippingCost(distance), 0);
+        return NumberUtils.round(cost < 10 ? 10 : cost, 2);
     }
 }

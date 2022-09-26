@@ -1,8 +1,9 @@
 export default class Coupon {
     readonly code: string;
     readonly percentage: number;
+    readonly expiresAt: Date;
 
-    constructor(code: string, percentage: number) {
+    constructor(code: string, percentage: number, expiresAt: Date) {
         if (!code) {
             throw new Error('Invalid code');
         }
@@ -11,11 +12,23 @@ export default class Coupon {
             throw new Error('Invalid percentage');
         }
 
+        if (expiresAt.toDateString() === "Invalid Date") {
+            throw new Error('Invalid expires date');
+        }
+
         this.code = code;
         this.percentage = percentage;
+        this.expiresAt = expiresAt;
     }
 
-    discount(total: number) {
+    isExpired(date: Date) {
+        return date > this.expiresAt;
+    }
+
+    discount(total: number, date: Date) {
+        if (this.isExpired(date)) {
+            return 0;
+        }
         return total * this.percentage / 100;
     }
 }

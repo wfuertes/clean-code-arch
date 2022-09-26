@@ -1,5 +1,12 @@
+import Dimension from "./Dimension";
+
 export default class OrderItem {
-    constructor(readonly itemId: string, readonly price: number, readonly quantity: number) { 
+    constructor(
+        readonly itemId: string, 
+        readonly price: number, 
+        readonly quantity: number,
+        readonly dimension: Dimension
+    ) { 
         if (!itemId) {
             throw new Error('Invalid item id');
         }
@@ -15,5 +22,9 @@ export default class OrderItem {
 
     total() {
         return this.price * this.quantity;
+    }
+
+    shippingCost(distance: number) {
+        return distance * (this.dimension.weightKg / 100.0);
     }
 }
