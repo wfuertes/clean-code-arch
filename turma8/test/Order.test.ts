@@ -51,6 +51,13 @@ test('Deve calcular o custo de envio', () => {
     expect(order.shippingCost(1000)).toBe(440);
 });
 
+test('Deve calcular o custo de envio com valor minimo', () => {
+    const cpf = Cpf.of('013.955.728-87');
+    const order = new Order(cpf, new Date('2021-10-01'));
+    order.addItem(new OrderItem('1_Camera', 5000, 1, new Dimension(20, 15, 10, 0.5)));
+    expect(order.shippingCost(1000)).toBe(10);
+});
+
 test('Nao deve adicionar item repetido', () => {
     const cpf = Cpf.of('013.955.728-87');
     const order = new Order(cpf, new Date('2021-10-01'));
