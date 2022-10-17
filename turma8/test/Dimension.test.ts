@@ -1,4 +1,4 @@
-import Dimension from "../src/Dimension";
+import Dimension from "../src/domain/entities/Dimension";
 
 test('Deve criar uma dimension valida', () => {
     const dimension = new Dimension(10, 10, 10, 1);

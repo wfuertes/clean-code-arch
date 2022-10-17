@@ -1,4 +1,4 @@
-import Cpf from "../src/Cpf";
+import Cpf from "../src/domain/entities/Cpf";
 
 test('Deve criar instância com CPF valido', () => {
     const cpf = new Cpf('013.955.728-87');

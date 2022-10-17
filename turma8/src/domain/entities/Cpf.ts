@@ -44,7 +44,6 @@ export default class Cpf {
             sum += parseInt(num) * factor--;
         }
         const rest = sum % Cpf.LENGTH;
-        const digit = (rest >= 2) ? Cpf.LENGTH - rest : 0;
-        return digit;
+        return (rest >= 2) ? Cpf.LENGTH - rest : 0;
     }
 }

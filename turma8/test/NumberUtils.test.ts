@@ -1,4 +1,4 @@
-import NumberUtils from "../src/NumberUtils";
+import NumberUtils from "../src/domain/utils/NumberUtils";
 
 test('Deve arredondar para 2 casas decimais', () => {
     const value = NumberUtils.round(1.234, 2);

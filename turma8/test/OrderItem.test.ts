@@ -1,5 +1,5 @@
-import Dimension from "../src/Dimension";
-import OrderItem from "../src/OrderItem";
+import Dimension from "../src/domain/entities/Dimension";
+import OrderItem from "../src/domain/entities/OrderItem";
 
 test('Deve criar um order item valido', () => {
     const orderItem = new OrderItem('TV', 10, 2, new Dimension(10, 10, 10, 1));

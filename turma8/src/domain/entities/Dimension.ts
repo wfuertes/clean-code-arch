@@ -1,4 +1,4 @@
-import NumberUtils from "./NumberUtils";
+import NumberUtils from "../utils/NumberUtils";
 
 export default class Dimension {
     constructor(

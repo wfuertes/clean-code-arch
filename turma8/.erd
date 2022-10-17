@@ -1,0 +1,14 @@
+erdiagram Model
+
+notation=default
+generate=off
+
+entity A {
+   id key
+}
+entity B {
+   id key
+}
+relationship Rel {
+   A -> B
+}
